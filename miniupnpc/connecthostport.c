@@ -29,6 +29,12 @@
 #endif /* #ifdef MINIUPNPC_SET_SOCKET_TIMEOUT */
 #include <sys/param.h>
 #include <sys/select.h>
+// Ugh, icky hack to get select() working...
+#ifdef __has_feature
+#  if __has_feature(modules)
+#    include <sys/_select.h>
+#  endif
+#endif
 #include <errno.h>
 #define closesocket close
 #include <netdb.h>
